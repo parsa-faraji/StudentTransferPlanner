@@ -56,7 +56,8 @@ string findMajorString(int majorChoice) {
             default:
                 return "0";
         }
-    } catch(majorChoice)
+    } catch(exception){
+    }
     
 }
 
