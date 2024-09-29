@@ -89,58 +89,56 @@ void printClassList(string program, string* classes, int size) {
         cout << endl;
     cout << "************************************************************\n";
 }
-
+// remind to put space between class name and number
 void classFinder(string className, string* classList, string* classesToTake, int size) {
     int i = 0;
-    while (i < size) {
-        classesToTake[i] = classList[i];
-        if (className == classList[i]) {
-            classesToTake[i] = "";
+   // debug: printClassList("", classesToTake, size);
+    for (int j = 0; j < size; j++) {
+        if (className == classList[j]) {
+            classesToTake[j] = "";
         }
     }
+    // debug: printClassList("", classesToTake, size);
 }
 
-string classNameFormatter(string className) {
-    for (auto& x : className) {
-        x = tolower(x);
-    }
-    className[0] = toupper(className[0]);
-    return className;
-}
-
-void askClassTaken() {
+string askClassTaken() {
     cout << "What classes have you taken from the list above?" << endl;
-    cout << "Enter one by one:" << endl;
+    cout << "Enter class name one by 1: (0 to stop)" << endl;
     string className;
     
     getline(cin,className);
-    classNameFormatter(className);
+    
+    for (auto& x : className) {
+        x = toupper(x);
+    }
+    return className;
 }
 
 
 
 int main(int argc, const char * argv[]) {
-    string BerkeleyCS[] = {"Math 3A", "Math 3B", "Math 3E",
-                           "Math 3F", "CIS 25", "CIS 27", "CIS 61"};
-    string BerkeleyEECS[] = {"Math 3A", "Math 3B", "Math 3C",
-                             "Math 3E", "Math 3F", "CIS 25",
-                             "CIS 27", "CIS 61", "Physics 4A",
-                             "Physics 4B", "ENGL 1A", "ENGL 1B"};
-    string BerkeleyDS[] = {"Math 3A", "Math 3B", "Math 3E", "Math 3F",
+    string BerkeleyCS[] = {"MATH 3A", "MATH 3B", "MATH 3E",
+                           "MATH 3F", "CIS 25", "CIS 27", "CIS 61"};
+    string BerkeleyEECS[] = {"MATH 3A", "MATH 3B", "MATH 3C",
+                             "MATH 3E", "MATH 3F", "CIS 25",
+                             "CIS 27", "CIS 61", "PHYSICS 4A",
+                             "PHYSICS 4B", "ENGL 1A", "ENGL 1B"};
+    string BerkeleyDS[] = {"MATH 3A", "MATH 3B", "MATH 3E", "MATH 3F",
                            "CIS 25", "CIS 27", "CIS 61", "CIS 118"};
-    string DavisCS[] = {"Math 3A", "Math 3B", "Math 3C",
-                        "Math 3E", "Math 11", "CIS 6 or 61",
+    string DavisCS[] = {"MATH 3A", "MATH 3B", "MATH 3C",
+                        "MATH 3E", "MATH 11", "CIS 6 or 61",
                         "*CIS 25", "*CIS 36A", "CIS 36B", "CIS 27", "CIS 20"};
-    string DavisDS[] = {"Math 3A", "Math 3B", "Math 3C" ,
-                        "Math 3E", "Math 13", "CIS 6 or 61"};
-    string IrvineCS[] = {"Math 3A", "Math 3B", "Math 3E",
+    string DavisDS[] = {"MATH 3A", "MATH 3B", "MATH 3C" ,
+                        "MATH 3E", "MATH 13", "CIS 6 or 61"};
+    string IrvineCS[] = {"MATH 3A", "MATH 3B", "MATH 3E",
                          "#*CIS 6", "#*CIS 25", "##*CIS 36A" "##*CIS 36B", "CIS 20"};
-    string IrvineDS[] = {"Math 3A", "Math 3B", "Math 3C", "Math 3E", "Math 13",
-                         "#*CIS 6", "#*CIS 25", "##*CIS 36A", "##*CIS 36B", "CIS 20"};
+    string IrvineDS[] = {"MATH 3A", "MATH 3B", "MATH 3C", "MATH 3E", "MATH 13",
+                         "#*CIS 6", "#*CIS 25", "##*CIS 36A", "##*CIS 36B", "CIS 20"}; // comment instructions
     printWelcomeMessage();
     string name = getName();
     string major = findMajorTitle(getMajorChoice());
     string school;
+
     
     if (major == "EECS") {
         school = "UC Berkeley";
@@ -154,30 +152,48 @@ int main(int argc, const char * argv[]) {
     if (program == "UC Berkeley Computer Science") {
         int size = sizeof(BerkeleyCS) / sizeof(BerkeleyCS[0]);
         printClassList(program, BerkeleyCS, size);
+        string classesToTake[size];
+        for (int i = 0; i < size; i++) {
+            classesToTake[i] = BerkeleyCS[i];
+        }
+        string classTaken = "scdasfas"; // random string
+        cout << endl;
+        while (classTaken != "0"){
+            classTaken = askClassTaken();
+            classFinder(classTaken, BerkeleyCS, classesToTake, size);
+        }
+        printClassList(program, BerkeleyCS, size);
+        // "" no matching class
     }
     else if (program == "UC Berkeley EECS"){
         int size = sizeof(BerkeleyEECS) / sizeof(BerkeleyEECS[0]);
         printClassList(program, BerkeleyEECS, size);
+        string classesToTake[size];
     }
     else if (program == "UC Berkeley Data Science") {
         int size = sizeof(BerkeleyDS) / sizeof(BerkeleyDS[0]);
         printClassList(program, BerkeleyDS, size);
+        string classesToTake[size];
     }
     else if (program == "UC Davis Computer Science") {
         int size = sizeof(DavisCS) / sizeof(DavisCS[0]);
         printClassList(program, DavisCS, size);
+        string classesToTake[size];
     }
     else if (program == "UC Davis Data Science") {
         int size = sizeof(DavisDS) / sizeof(DavisDS[0]);
         printClassList(program, DavisDS, size);
+        string classesToTake[size];
     }
     else if (program == "UC Irvine Computer Science"){
         int size = sizeof(IrvineCS) / sizeof(IrvineCS[0]);
         printClassList(program, IrvineCS, size);
+        string classesToTake[size];
     }
     else if (program == "UC Irvine Data Science"){
         int size = sizeof(IrvineDS) / sizeof(IrvineDS[0]);
         printClassList(program, IrvineDS, size);
+        string classesToTake[size];
     }
     
     return 0;
