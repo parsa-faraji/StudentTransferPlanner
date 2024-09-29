@@ -90,14 +90,34 @@ void printClassList(string program, string* classes, int size) {
     cout << "************************************************************\n";
 }
 
-string askClassTaken() {
+void classFinder(string className, string* classList, string* classesToTake, int size) {
+    int i = 0;
+    while (i < size) {
+        classesToTake[i] = classList[i];
+        if (className == classList[i]) {
+            classesToTake[i] = "";
+        }
+    }
+}
+
+string classNameFormatter(string className) {
+    for (auto& x : className) {
+        x = tolower(x);
+    }
+    className[0] = toupper(className[0]);
+    return className;
+}
+
+void askClassTaken() {
     cout << "What classes have you taken from the list above?" << endl;
     cout << "Enter one by one:" << endl;
     string className;
     
     getline(cin,className);
-    return className;
+    classNameFormatter(className);
 }
+
+
 
 int main(int argc, const char * argv[]) {
     string BerkeleyCS[] = {"Math 3A", "Math 3B", "Math 3E",
@@ -110,13 +130,13 @@ int main(int argc, const char * argv[]) {
                            "CIS 25", "CIS 27", "CIS 61", "CIS 118"};
     string DavisCS[] = {"Math 3A", "Math 3B", "Math 3C",
                         "Math 3E", "Math 11", "CIS 6 or 61",
-                        "CIS 25 or 36A or 36B", "CIS 27", "CIS 20"};
+                        "*CIS 25", "*CIS 36A", "CIS 36B", "CIS 27", "CIS 20"};
     string DavisDS[] = {"Math 3A", "Math 3B", "Math 3C" ,
                         "Math 3E", "Math 13", "CIS 6 or 61"};
     string IrvineCS[] = {"Math 3A", "Math 3B", "Math 3E",
-                         "CIS 6 & CIS 25 OR CIS 36A & CIS 36B", "CIS 20"};
+                         "#*CIS 6", "#*CIS 25", "##*CIS 36A" "##*CIS 36B", "CIS 20"};
     string IrvineDS[] = {"Math 3A", "Math 3B", "Math 3C", "Math 3E", "Math 13",
-                         "CIS 6 & CIS 25 OR CIS 36A & CIS 36B", "CIS 20"};
+                         "#*CIS 6", "#*CIS 25", "##*CIS 36A", "##*CIS 36B", "CIS 20"};
     printWelcomeMessage();
     string name = getName();
     string major = findMajorTitle(getMajorChoice());
