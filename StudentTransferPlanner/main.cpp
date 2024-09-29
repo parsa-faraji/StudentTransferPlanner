@@ -90,6 +90,14 @@ void printClassList(string program, string* classes, int size) {
     cout << "************************************************************\n";
 }
 
+string askClassTaken() {
+    cout << "What classes have you taken from the list above?" << endl;
+    cout << "Enter one by one:" << endl;
+    string className;
+    
+    getline(cin,className);
+    return className;
+}
 
 int main(int argc, const char * argv[]) {
     string BerkeleyCS[] = {"Math 3A", "Math 3B", "Math 3E",
@@ -127,15 +135,30 @@ int main(int argc, const char * argv[]) {
         int size = sizeof(BerkeleyCS) / sizeof(BerkeleyCS[0]);
         printClassList(program, BerkeleyCS, size);
     }
-
-
-
-    
-    
-
-    
-    
-    
+    else if (program == "UC Berkeley EECS"){
+        int size = sizeof(BerkeleyEECS) / sizeof(BerkeleyEECS[0]);
+        printClassList(program, BerkeleyEECS, size);
+    }
+    else if (program == "UC Berkeley Data Science") {
+        int size = sizeof(BerkeleyDS) / sizeof(BerkeleyDS[0]);
+        printClassList(program, BerkeleyDS, size);
+    }
+    else if (program == "UC Davis Computer Science") {
+        int size = sizeof(DavisCS) / sizeof(DavisCS[0]);
+        printClassList(program, DavisCS, size);
+    }
+    else if (program == "UC Davis Data Science") {
+        int size = sizeof(DavisDS) / sizeof(DavisDS[0]);
+        printClassList(program, DavisDS, size);
+    }
+    else if (program == "UC Irvine Computer Science"){
+        int size = sizeof(IrvineCS) / sizeof(IrvineCS[0]);
+        printClassList(program, IrvineCS, size);
+    }
+    else if (program == "UC Irvine Data Science"){
+        int size = sizeof(IrvineDS) / sizeof(IrvineDS[0]);
+        printClassList(program, IrvineDS, size);
+    }
     
     return 0;
 }
