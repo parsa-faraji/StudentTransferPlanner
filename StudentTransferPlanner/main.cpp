@@ -91,7 +91,6 @@ void printClassList(string program, string* classes, int size) {
 }
 // remind to put space between class name and number
 void classFinder(string className, string* classList, string* classesToTake, int size) {
-    int i = 0;
    // debug: printClassList("", classesToTake, size);
     for (int j = 0; j < size; j++) {
         if (className == classList[j]) {
@@ -162,7 +161,7 @@ int main(int argc, const char * argv[]) {
             classTaken = askClassTaken();
             classFinder(classTaken, BerkeleyCS, classesToTake, size);
         }
-        printClassList(program, BerkeleyCS, size);
+        printClassList(program, classesToTake, size);
         // "" no matching class
     }
     else if (program == "UC Berkeley EECS"){
