@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include <iomanip>
-#include <format> // introduced in C++ 20
 
 using namespace std;
 
@@ -101,7 +100,7 @@ void classFinder(string className, string* classList, string* classesToTake, int
 }
 
 void optionalClassAllocator(string program, string className, string* classesToTake, int size) {
-    if (program == "UC Davis Computer Science") {
+    if (program == "UC Davis Computer Science" || program == "UC Davis Data Science") {
         // modified ready className
         if (className[0] == '#' && className[1] == '#') {
             for (int j = 0; j < size; j++) {
@@ -111,6 +110,23 @@ void optionalClassAllocator(string program, string className, string* classesToT
             }
         }
         else if (className[0] == '#') {
+            for (int j = 0; j < size; j++) {
+                if (classesToTake[j][0] == '#' && classesToTake[j][1] != '#') {
+                    classesToTake[j] = "";
+                }
+            }
+        }
+    }
+    else if (program == "UC Irvine Computer Science" || program == "UC Irvine Data Science") {
+        if (className[0] == '#' && className[1] != '#') {
+            for (int j = 0; j < size; j++) {
+                if (classesToTake[j][0] == '#' && classesToTake[j][1] == '#') {
+                    classesToTake[j] = "";
+                    // best path for student
+                }
+            }
+        }
+        else if (className[0] == '#' && className[1] == '#') {
             for (int j = 0; j < size; j++) {
                 if (classesToTake[j][0] == '#' && classesToTake[j][1] != '#') {
                     classesToTake[j] = "";
@@ -248,6 +264,7 @@ int main(int argc, const char * argv[]) {
         while (classTaken != "0"){
             classTaken = askClassTaken();
             classFinder(classTaken, DavisDS, classesToTake, size);
+            optionalClassAllocator("UC Davis Data Science", classTaken, classesToTake, size);
         }
         printClassList(program, classesToTake, size);
     }
@@ -263,6 +280,7 @@ int main(int argc, const char * argv[]) {
         while (classTaken != "0"){
             classTaken = askClassTaken();
             classFinder(classTaken, IrvineCS, classesToTake, size);
+            optionalClassAllocator("UC Irvine Computer Science", classTaken, classesToTake, size);
         }
         printClassList(program, classesToTake, size);
     }
@@ -278,10 +296,10 @@ int main(int argc, const char * argv[]) {
         while (classTaken != "0"){
             classTaken = askClassTaken();
             classFinder(classTaken, IrvineDS, classesToTake, size);
+            optionalClassAllocator("UC Irvine Data Science", classTaken, classesToTake, size);
         }
         printClassList(program, classesToTake, size);
     }
-    
     return 0;
 }
 
