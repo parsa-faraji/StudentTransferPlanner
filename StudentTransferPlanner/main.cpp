@@ -16,9 +16,18 @@ using namespace std;
 // USE FUNCTION PROTOYTPING
 
 // create several files for functions
+
+//WHILE ERROR IN PROGRAM
+// ADD Separate files
+
+// add major info and format the final class showing message
+
 // give campus sepcfic advice
 // Give campus suggestions lol
 // Apply order in taking classes
+
+// make format more beautiful
+// fix or and class fprmat
 
 // function declarations
 string getName();
@@ -40,8 +49,11 @@ void educationPlanGenerator(string studentName, string* classesToTake, int size)
 // returns the name of the student
 string getName() {
     string name;
+    cout << "SECTION 1: STUDENT NAME" << endl;
+    cout << "------------------------------------------------------------\n";
     cout << "Please Enter your name: \n";
     getline(cin,name);
+    
     return name;
 }
 // returns major choice as an integer
@@ -59,33 +71,98 @@ int getMajorChoice(){
 // prints a sketch of university attractions for display
 void printSketch(){
     cout << endl;
-    std::cout << "         /\\         "<<"          _____          " << "        .-^-.-^-.-.         " << std::endl;
-    std::cout << "        /  \\        "<<"        /      \\        " << "     .-'            '-.     " << std::endl;
-    std::cout << "       /    \\       "<<"       |  UC    |        " << "   .'                  '.   " << std::endl;
-    std::cout << "      /      \\      "<<"       |  DAVIS |        " << "  /                      \\  " << std::endl;
-    std::cout << "     /        \\     "<<"        \\______/        " << "  |    UC IRVINE          | " << std::endl;
-    std::cout << "    /          \\    "<<"          |||            " << "  \\                    /   " << std::endl;
-    std::cout << "   /            \\   "<<"          |||            " << "  \\                    /   " << std::endl;
-    std::cout << "  /              \\  "<<"          |||            " << "   '.                .'     " << std::endl;
-    std::cout << " /                \\ "<<"          |||            " << "          /      \\          " << std::endl;
-    std::cout << "/____UC Berkeley___\\"<<"          |||            " << "         /        \\         " << std::endl;
-    std::cout << " |    CAMPANILE  |   "<<"        /    \\          " << "        /          \\        " << std::endl;
-    std::cout << " |               |   "<<"       /      \\         " << "       /            \\       " << std::endl;
-    std::cout << " |    ________   |   "<<"      /        \\        " << "      /______________\\      " << std::endl;
-    std::cout << " |   |        |  |   "<<"     /          \\       " << "     IRVINE SPECTRUM      " << std::endl;
-    std::cout << " |   |        |  |   "<<"    / WATER TOWER\\      " << std::endl;
-    std::cout << " |   |        |  |   "<<"   /_____________ \\     " << std::endl;
-    std::cout << " |   |        |  |   "<<"                         " << std::endl;
-    std::cout << " |   |________|  |   "<<"                         " << std::endl;
-    std::cout << " |               |   "<<"                         " << std::endl;
-    std::cout << " |               |   "<<"                         " << std::endl;
-    std::cout << " |               |   "<<"                         " << std::endl;
-    std::cout << " |               |   "<<"                         " << std::endl;
-    std::cout << "   ////////////      "<<"                         " << std::endl;
-    std::cout << "  //////////////     "<<"                         " << std::endl;
-    std::cout << " ////////////////    "<<"                         " << std::endl;
-    std::cout << "///////////////////  "<<"                         " << std::endl;
-   
+    std::cout << "      /\\      "<<"     _____     " << "   . -^-.-^.   " << std::endl;
+    std::cout << "     /  \\     "<<"   /      \\    " << ".-        -. " << std::endl;
+    std::cout << "    /    \\    "<<"   | UC    |    " << "/          \\ " << std::endl;
+    std::cout << "   /      \\   "<<"   | DAVIS |    " << "| UC IRVINE |" << std::endl;
+    std::cout << "  /        \\  "<<"    \\_____/    " << " \\        /  " << std::endl;
+    std::cout << " /UC Berk.  \\ "<<"     |||      " << "   '.     .'   " << std::endl;
+    std::cout << " |Campanile | "<<"     |||      " << "      /\\      " << std::endl;
+    std::cout << " |   ___    | "<<"    /   \\     " << "     /  \\     " << std::endl;
+    std::cout << " |  |   |   | "<<"   /     \\    " << "    /    \\    " << std::endl;
+    std::cout << " |  |___|   | "<<"  /WaterTwr\\  " << "   /______\\   " << std::endl;
+    std::cout << " |__________| "<<" /__________\\ " << std::endl;
+
+}
+//void optionalClassFormatConvertor(string program, string className){
+//    if (className == "CIS 6") {
+//        
+//    }
+//    else if (className == "CIS 61"){
+//        
+//    }
+//    else if (className = "CIS 36A") {
+//        
+//    }
+//    else if (
+//
+//        
+//}
+
+void programDeterminator(string name, string program) {
+    string BerkeleyCS[] = {"MATH 3A", "MATH 3B", "MATH 3E",
+                           "MATH 3F", "CIS 25", "CIS 27", "CIS 61"};
+    string BerkeleyEECS[] = {"MATH 3A", "MATH 3B", "MATH 3C",
+                             "MATH 3E", "MATH 3F", "CIS 25",
+                             "CIS 27", "CIS 61", "PHYSICS 4A",
+                             "PHYSICS 4B", "ENGL 1A", "ENGL 1B"};
+    string BerkeleyDS[] = {"MATH 3A", "MATH 3B", "MATH 3E", "MATH 3F",
+                           "CIS 25", "CIS 27", "CIS 61", "CIS 118"};
+    string DavisCS[] = {"MATH 3A", "MATH 3B", "MATH 3C",
+                        "MATH 3E", "MATH 11", "#CIS 6", "#CIS 61",
+                        "##CIS 25", "##CIS 36A", "##CIS 36B", "CIS 27", "CIS 20"};
+    string DavisDS[] = {"MATH 3A", "MATH 3B", "MATH 3C" ,
+                        "MATH 3E", "MATH 13", "#CIS 6", "#CIS 61"};
+    string IrvineCS[] = {"MATH 3A", "MATH 3B", "MATH 3E",
+                         "#*CIS 6", "#*CIS 25", "##*CIS 36A", "##*CIS 36B", "CIS 20"};
+    string IrvineDS[] = {"MATH 3A", "MATH 3B", "MATH 3C", "MATH 3E", "MATH 13",
+                         "#*CIS 6", "#*CIS 25", "##*CIS 36A", "##*CIS 36B", "CIS 20"}; // comment instructions
+    
+    if (program == "UC Berkeley Computer Science") {
+        int size = sizeof(BerkeleyCS) / sizeof(BerkeleyCS[0]);
+        string classesToTake[size];
+        showProgramReqs(program, BerkeleyCS, classesToTake, size);
+        educationPlanGenerator(name, classesToTake, size);
+        // "" no matching class
+        // remove -- later and white space
+    }
+    else if (program == "UC Berkeley EECS"){
+        int size = sizeof(BerkeleyEECS) / sizeof(BerkeleyEECS[0]);
+        string classesToTake[size];
+        showProgramReqs(program, BerkeleyEECS, classesToTake, size);
+        educationPlanGenerator(name, classesToTake, size);
+    }
+    else if (program == "UC Berkeley Data Science") {
+        int size = sizeof(BerkeleyDS) / sizeof(BerkeleyDS[0]);
+        string classesToTake[size];
+        showProgramReqs(program, BerkeleyDS, classesToTake, size);
+        educationPlanGenerator(name, classesToTake, size);
+    }
+    else if (program == "UC Davis Computer Science") {
+        int size = sizeof(DavisCS) / sizeof(DavisCS[0]);
+        string classesToTake[size];
+        showProgramReqs(program, DavisCS, classesToTake, size);
+        educationPlanGenerator(name, classesToTake, size);
+        // error offering both CIS 6 and CIS 61 when nothing entered!
+    }
+    else if (program == "UC Davis Data Science") {
+        int size = sizeof(DavisDS) / sizeof(DavisDS[0]);
+        string classesToTake[size];
+        showProgramReqs(program, DavisDS, classesToTake, size);
+        educationPlanGenerator(name, classesToTake, size);
+    }
+    else if (program == "UC Irvine Computer Science"){
+        int size = sizeof(IrvineCS) / sizeof(IrvineCS[0]);
+        string classesToTake[size];
+        showProgramReqs(program, IrvineCS, classesToTake, size);
+        educationPlanGenerator(name, classesToTake, size);
+    }
+    else if (program == "UC Irvine Data Science"){
+        int size = sizeof(IrvineDS) / sizeof(IrvineDS[0]);
+        string classesToTake[size];
+        showProgramReqs(program, IrvineDS, classesToTake, size);
+        educationPlanGenerator(name, classesToTake, size);
+    }
 }
 // returns school choice as integer
 int getSchoolChoice(){
@@ -328,84 +405,31 @@ void educationPlanGenerator(string studentName, string* classesToTake, int size)
 }
 // Make main function super small
 int main(int argc, const char * argv[]) {
-    string BerkeleyCS[] = {"MATH 3A", "MATH 3B", "MATH 3E",
-                           "MATH 3F", "CIS 25", "CIS 27", "CIS 61"};
-    string BerkeleyEECS[] = {"MATH 3A", "MATH 3B", "MATH 3C",
-                             "MATH 3E", "MATH 3F", "CIS 25",
-                             "CIS 27", "CIS 61", "PHYSICS 4A",
-                             "PHYSICS 4B", "ENGL 1A", "ENGL 1B"};
-    string BerkeleyDS[] = {"MATH 3A", "MATH 3B", "MATH 3E", "MATH 3F",
-                           "CIS 25", "CIS 27", "CIS 61", "CIS 118"};
-    string DavisCS[] = {"MATH 3A", "MATH 3B", "MATH 3C",
-                        "MATH 3E", "MATH 11", "#CIS 6", "#CIS 61",
-                        "##CIS 25", "##CIS 36A", "##CIS 36B", "CIS 27", "CIS 20"};
-    string DavisDS[] = {"MATH 3A", "MATH 3B", "MATH 3C" ,
-                        "MATH 3E", "MATH 13", "#CIS 6", "#CIS 61"};
-    string IrvineCS[] = {"MATH 3A", "MATH 3B", "MATH 3E",
-                         "#*CIS 6", "#*CIS 25", "##*CIS 36A", "##*CIS 36B", "CIS 20"};
-    string IrvineDS[] = {"MATH 3A", "MATH 3B", "MATH 3C", "MATH 3E", "MATH 13",
-                         "#*CIS 6", "#*CIS 25", "##*CIS 36A", "##*CIS 36B", "CIS 20"}; // comment instructions
     printWelcomeMessage();
-    string name = getName();
-    string major = findMajorTitle(getMajorChoice());
-    string school;
+    int repeat = 0;
+    do {
+        string name = getName();
+        string major = findMajorTitle(getMajorChoice());
+        string school;
+        
+        if (major == "EECS") {
+            school = "UC Berkeley";
+        }
+        else {
+            school = findSchoolName(getSchoolChoice());
+        }
+        
+        string program = school + " " + major;
+        
+        
+        programDeterminator(name, program);
+        cout << "******************************************************\n";
+        cout << "Do you want to start again?\n";
+        cout << "Enter 1 for YES. Anything else will exit the program" << endl;
 
+        cin >> repeat;
+    } while (repeat == 1);
     
-    if (major == "EECS") {
-        school = "UC Berkeley";
-    }
-    else {
-        school = findSchoolName(getSchoolChoice());
-    }
-    
-    string program = school + " " + major;
-
-    
-    if (program == "UC Berkeley Computer Science") {
-        int size = sizeof(BerkeleyCS) / sizeof(BerkeleyCS[0]);
-        string classesToTake[size];
-        showProgramReqs(program, BerkeleyCS, classesToTake, size);
-        educationPlanGenerator(name, classesToTake, size);
-        // "" no matching class
-        // remove -- later and white space
-    }
-    else if (program == "UC Berkeley EECS"){
-        int size = sizeof(BerkeleyEECS) / sizeof(BerkeleyEECS[0]);
-        string classesToTake[size];
-        showProgramReqs(program, BerkeleyEECS, classesToTake, size);
-        educationPlanGenerator(name, classesToTake, size);
-    }
-    else if (program == "UC Berkeley Data Science") {
-        int size = sizeof(BerkeleyDS) / sizeof(BerkeleyDS[0]);
-        string classesToTake[size];
-        showProgramReqs(program, BerkeleyDS, classesToTake, size);
-        educationPlanGenerator(name, classesToTake, size);
-    }
-    else if (program == "UC Davis Computer Science") {
-        int size = sizeof(DavisCS) / sizeof(DavisCS[0]);
-        string classesToTake[size];
-        showProgramReqs(program, DavisCS, classesToTake, size);
-        educationPlanGenerator(name, classesToTake, size);
-        // error offering both CIS 6 and CIS 61 when nothing entered!
-    }
-    else if (program == "UC Davis Data Science") {
-        int size = sizeof(DavisDS) / sizeof(DavisDS[0]);
-        string classesToTake[size];
-        showProgramReqs(program, DavisDS, classesToTake, size);
-        educationPlanGenerator(name, classesToTake, size);
-    }
-    else if (program == "UC Irvine Computer Science"){
-        int size = sizeof(IrvineCS) / sizeof(IrvineCS[0]);
-        string classesToTake[size];
-        showProgramReqs(program, IrvineCS, classesToTake, size);
-        educationPlanGenerator(name, classesToTake, size);
-    }
-    else if (program == "UC Irvine Data Science"){
-        int size = sizeof(IrvineDS) / sizeof(IrvineDS[0]);
-        string classesToTake[size];
-        showProgramReqs(program, IrvineDS, classesToTake, size);
-        educationPlanGenerator(name, classesToTake, size);
-    }
     return 0;
 }
 
