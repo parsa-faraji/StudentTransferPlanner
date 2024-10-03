@@ -12,22 +12,16 @@
 #include <ctime>
 
 
+
 using namespace std;
-// USE FUNCTION PROTOYTPING
+
+// Functions in several files
+
+
 
 // create several files for functions
 
-//WHILE ERROR IN PROGRAM
-// ADD Separate files
 
-// add major info and format the final class showing message
-
-// give campus sepcfic advice
-// Give campus suggestions lol
-// Apply order in taking classes
-
-// make format more beautiful
-// fix or and class fprmat
 
 // function declarations
 string getName();
@@ -45,6 +39,9 @@ string askClassTaken();
 bool checkClassOrder(int num ,string* classesToTake);
 void showProgramReqs(string programName, string* requiredClasses, string* classesToTake, int size);
 void educationPlanGenerator(string studentName, string* classesToTake, int size);
+void programDeterminator(string name, string program);
+bool checkClassOrder(int num ,string* classesToTake);
+
 
 // returns the name of the student
 string getName() {
@@ -52,53 +49,132 @@ string getName() {
     cout << "SECTION 1: STUDENT NAME" << endl;
     cout << "------------------------------------------------------------\n";
     cout << "Please Enter your name: \n";
+    cout << "Answer: ";
     getline(cin,name);
     
     return name;
 }
 // returns major choice as an integer
 int getMajorChoice(){
-    cout << "************************************************************\n";
-    cout << "Please select your major:\n\n";
+    cout << "\n************************************************************\n";
+    cout << "SECTION 2: STUDENT MAJOR" << endl;
+    cout << "------------------------------------------------------------\n";
+    cout << "Please select your major: (Choose from 1 - 3)\n\n";
     // If answer is EECS,  don't ask for school!
     // CSE Davis
     cout << left << setw(25) << "1) Computer Science" << setw(25) << "2) Data Science" << setw(25) << "3) EECS(UC Berkeley)" << endl;
     int majorChoice;
+    cout << "Answer: ";
     cin >> majorChoice;
     return majorChoice;
+}
+
+
+// returns school choice as integer
+int getSchoolChoice(){
+    cout << "************************************************************\n";
+    cout << "SECTION 3: STUDENT'S INTENDED SCHOOL" << endl;
+    cout << "------------------------------------------------------------\n";
+    cout << "What school do you want to transfer to?(Choose from 1 - 3)\n\n";
+    cout << setw(18) << "1)UC Berekley" << setw(18) << "2)UC Davis" << setw(18) << "3)UC Irvine";
+    printSketch();
+    int schoolChoice;
+    cout << "\nAnswer: ";
+    cin >> schoolChoice;
+    return schoolChoice;
+}
+
+// prints a welcome message about the program to the user
+void printWelcomeMessage() {
+    
+    // get the timestamp for the current date and time
+    time_t timestamp;
+    time(&timestamp);
+
+    cout << "Today's Date & Time: " << endl;
+    // display the date and time represented by the timestamp
+    cout << ctime(&timestamp) << endl;
+    cout << "************************************************************\n";
+    cout << "Welcome!\n";
+    cout << "This program is a Student Education Planner designed for \n";
+    cout << "students at Peralta colleges intending to transfer into Computer/Data \n";
+    cout << "Science undergraduate programs. Available Schools as of now are UC Berkeley, ";
+    cout << "UC Davis, and UC Irvine.\n";
+    cout << "************************************************************\n";
+}
+
+
+// converts major choice from int to string
+string findMajorTitle(int majorChoice) {
+        switch (majorChoice) {
+            case 1:
+                return "Computer Science";
+            case 2:
+                return "Data Science";
+            case 3:
+                return "EECS";
+            default:
+                cout << "\n^^^Invalid selection^^^\n";
+                cin.clear();
+                // discard the invalid input
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                // if invalid, prompt again
+                return(findMajorTitle(getMajorChoice()));
+        }
+}
+// converts school choice from int to string
+string findSchoolName(int schoolChoice) {
+    switch (schoolChoice) {
+        case 1:
+            return "UC Berkeley";
+        case 2:
+            return "UC Davis";
+        case 3:
+            return "UC Irvine";
+        default:
+            cout << "\n^^^Invalid selection^^^\n";
+            cin.clear();
+            // discard the invalid input
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            // if invalid, prompt again
+            return(findSchoolName(getSchoolChoice()));
+    }
+}
+
+// prints the list of classes from an array
+void printClassList(string* classes, int size) {
+    cout << "************************************************************\n";
+    int j = 1;
+    for (int i = 0; i < size; i++) {
+        cout << classes[i];
+        if ((i != size - 1) && (classes[i] != ""))
+            cout << " - ";
+        if (j % 4 == 0)
+            cout << "\n";
+        j++;
+    }
+    if ((j-1) % 4 != 0)
+        cout << endl;
+    cout << "************************************************************\n";
 }
 
 // prints a sketch of university attractions for display
 void printSketch(){
     cout << endl;
-    std::cout << "      /\\      "<<"     _____     " << "   . -^-.-^.   " << std::endl;
-    std::cout << "     /  \\     "<<"   /      \\    " << ".-        -. " << std::endl;
-    std::cout << "    /    \\    "<<"   | UC    |    " << "/          \\ " << std::endl;
-    std::cout << "   /      \\   "<<"   | DAVIS |    " << "| UC IRVINE |" << std::endl;
-    std::cout << "  /        \\  "<<"    \\_____/    " << " \\        /  " << std::endl;
-    std::cout << " /UC Berk.  \\ "<<"     |||      " << "   '.     .'   " << std::endl;
-    std::cout << " |Campanile | "<<"     |||      " << "      /\\      " << std::endl;
-    std::cout << " |   ___    | "<<"    /   \\     " << "     /  \\     " << std::endl;
-    std::cout << " |  |   |   | "<<"   /     \\    " << "    /    \\    " << std::endl;
-    std::cout << " |  |___|   | "<<"  /WaterTwr\\  " << "   /______\\   " << std::endl;
-    std::cout << " |__________| "<<" /__________\\ " << std::endl;
+    std::cout << "      /\\      " <<"     _____      " << "     . -^-.-^.    " << std::endl;
+    std::cout << "     /  \\     " <<"    /     \\    " << "    .-         -.   " << std::endl;
+    std::cout << "    /    \\    " <<"   | UC    |    " << "   /           \\   " << std::endl;
+    std::cout << "   /      \\   " <<"   | DAVIS |    " << "   | UC IRVINE  |   " << std::endl;
+    std::cout << "  /--------\\  " <<"    \\_____/    " << "     \\          /  " << std::endl;
+    std::cout << " /    UCB   \\ " <<"      |||       " << "      '.     .'    " << std::endl;
+    std::cout << " |Campanile |  " <<"     |||       " << "       /  \\      " << std::endl;
+    std::cout << " |   ___    |  " <<"    /    \\     " << "       /    \\     " << std::endl;
+    std::cout << " |  |   |   |  " <<"   /      \\    " << "      /      \\    " << std::endl;
+    std::cout << " |  |___|   |  " <<"  /WaterTwr\\   " << "     /Spectrum\\   " << std::endl;
+    std::cout << " |__________|  " <<" /__________\\  " << std::endl;
 
 }
-//void optionalClassFormatConvertor(string program, string className){
-//    if (className == "CIS 6") {
-//        
-//    }
-//    else if (className == "CIS 61"){
-//        
-//    }
-//    else if (className = "CIS 36A") {
-//        
-//    }
-//    else if (
-//
-//        
-//}
-
+// determines the program taken by the user and generates ed plan accordingly
 void programDeterminator(string name, string program) {
     string BerkeleyCS[] = {"MATH 3A", "MATH 3B", "MATH 3E",
                            "MATH 3F", "CIS 25", "CIS 27", "CIS 61"};
@@ -123,8 +199,7 @@ void programDeterminator(string name, string program) {
         string classesToTake[size];
         showProgramReqs(program, BerkeleyCS, classesToTake, size);
         educationPlanGenerator(name, classesToTake, size);
-        // "" no matching class
-        // remove -- later and white space
+
     }
     else if (program == "UC Berkeley EECS"){
         int size = sizeof(BerkeleyEECS) / sizeof(BerkeleyEECS[0]);
@@ -142,98 +217,37 @@ void programDeterminator(string name, string program) {
         int size = sizeof(DavisCS) / sizeof(DavisCS[0]);
         string classesToTake[size];
         showProgramReqs(program, DavisCS, classesToTake, size);
+        cout << "Classes marked with # are either/or, meaning taking one from the two is sufficient" << endl;
+        cout << "************************************************************\n";
         educationPlanGenerator(name, classesToTake, size);
-        // error offering both CIS 6 and CIS 61 when nothing entered!
     }
     else if (program == "UC Davis Data Science") {
         int size = sizeof(DavisDS) / sizeof(DavisDS[0]);
         string classesToTake[size];
         showProgramReqs(program, DavisDS, classesToTake, size);
+        cout << "Classes marked with # are either/or, meaning taking one from the two is sufficient" << endl;
+        cout << "************************************************************\n";
         educationPlanGenerator(name, classesToTake, size);
     }
     else if (program == "UC Irvine Computer Science"){
         int size = sizeof(IrvineCS) / sizeof(IrvineCS[0]);
         string classesToTake[size];
         showProgramReqs(program, IrvineCS, classesToTake, size);
+        cout << "Classes marked with same number of # belong to the same sequence," << endl;
+        cout << "and among them classes marked with * should be completed together." << endl;
+        cout << "************************************************************\n";
         educationPlanGenerator(name, classesToTake, size);
     }
     else if (program == "UC Irvine Data Science"){
         int size = sizeof(IrvineDS) / sizeof(IrvineDS[0]);
         string classesToTake[size];
         showProgramReqs(program, IrvineDS, classesToTake, size);
+        cout << "Classes marked with same number of # belong to the same sequence," << endl;
+        cout << "and among them classes marked with * should be completed together." << endl;
+        cout << "************************************************************\n";
         educationPlanGenerator(name, classesToTake, size);
     }
 }
-// returns school choice as integer
-int getSchoolChoice(){
-    cout << "************************************************************\n";
-    cout << "What school do you want to transfer to?(Choose from below)\n\n";
-    cout << setw(25) << "1)UC Berekley" << setw(25) << "2)UC Davis" << setw(25) << "3)UC Irvine";
-    printSketch();
-    int schoolChoice;
-    cin >> schoolChoice;
-    return schoolChoice;
-}
-
-// prints a welcome message about the program to the user
-void printWelcomeMessage() {
-    cout << "************************************************************\n";
-    cout << "Welcome!\n";
-    cout << "This program is a Student Education Planner designed for \n";
-    cout << "students at Peralta colleges intending to transfer into Computer/Data \n";
-    cout << "Science-related undergraduate programs. Available Schools as of now are UC Berkeley, ";
-    cout << "UC Davis, and UC Irvine.\n";
-    cout << "************************************************************\n";
-}
-// converts major choice from int to string
-string findMajorTitle(int majorChoice) {
-        switch (majorChoice) {
-            case 1:
-                return "Computer Science";
-            case 2:
-                return "Data Science";
-            case 3:
-                return "EECS";
-            default:
-                cout << "Invalid selection\n";
-                // if invalid, prompt again
-                return(findMajorTitle(getMajorChoice()));
-        }
-}
-// converts school choice from int to string
-string findSchoolName(int schoolChoice) {
-    switch (schoolChoice) {
-        case 1:
-            return "UC Berkeley";
-        case 2:
-            return "UC Davis";
-        case 3:
-            return "UC Irvine";
-        default:
-            cout << "Invalid selection\n";
-            // if invalid, prompt again
-            return(findSchoolName(getSchoolChoice()));
-    }
-}
-
-// prints the list of classes from an array
-void printClassList(string* classes, int size) {
-    cout << "************************************************************\n";
-    int j = 1;
-    for (int i = 0; i < size; i++) {
-        cout << classes[i];
-        if ((i != size - 1) && (classes[i] != ""))
-            cout << " - ";
-        if (j % 4 == 0)
-            cout << "\n";
-        j++;
-    }
-    if ((j-1) % 4 != 0)
-        cout << endl;
-    cout << "************************************************************\n";
-}
-
-// remind to put space between class name and number
 
 // finds the class taken by the user and removes it from the list of classesToTake
 void classFinder(string className, string* classList, string* classesToTake, int size) {
@@ -270,7 +284,7 @@ void optionalClassAllocator(string program, string className, string* classesToT
             for (int j = 0; j < size; j++) {
                 if (classesToTake[j][0] == '#' && classesToTake[j][1] == '#') {
                     classesToTake[j] = "";
-                    // best path for student
+
                 }
             }
         }
@@ -283,10 +297,12 @@ void optionalClassAllocator(string program, string className, string* classesToT
         }
     }
 }
+
 // prints the message to screen for classesTaken
 void printClassTakenMessage(){
     cout << "What classes have you taken from the list above?" << endl;
-    cout << "If a class has special marking with #/*, include that in your answer"  << endl;
+    cout << "(If a class has special marking with #/*, include that in your answer)"  << endl;
+    cout << "(Use one space between subject and course number such as MATH 3A)" << endl;
 }
 
 // returns the className taken by the user
@@ -306,6 +322,7 @@ string askClassTaken() {
     return className;
 }
 
+// checks class order to see if class of previous sequence has been taken
 bool checkClassOrder(int num ,string* classesToTake){
     if (((classesToTake[num] == "MATH 3B") || (classesToTake[num] == "MATH 3C") || (classesToTake[num] == "CIS 27") || (classesToTake[num] == "##*CIS 36B") ||
         (classesToTake[num] == "#*CIS 25")) && (classesToTake[num-1] != "")){
@@ -320,6 +337,10 @@ bool checkClassOrder(int num ,string* classesToTake){
     
 // shows program course requirements for a specific undergrad program
 void showProgramReqs(string programName, string* requiredClasses, string* classesToTake, int size) {
+    cout << "************************************************************\n";
+    cout << "SECTION 4: Courses Required for Transfer" <<endl;
+    cout << "------------------------------------------------------------\n";
+    
     cout << "Here's a list of all classes you need to take at Peralta:" << endl;
     printClassList(requiredClasses, size);
     for (int i = 0; i < size; i++) {
@@ -331,24 +352,37 @@ void showProgramReqs(string programName, string* requiredClasses, string* classe
         classTaken = askClassTaken();
         classFinder(classTaken, requiredClasses, classesToTake, size);
     }
-    cout << "Here are all classes you should take later on before you transfer." << endl;
+    cout << "\nHere are all classes you should take later on before you transfer." << endl;
     printClassList(classesToTake, size);
 }
 
 
 // generates a random education plan for the user
 void educationPlanGenerator(string studentName, string* classesToTake, int size) {
-    int classesPerSemester;
-    cout << "How many classes do you want to take per semester? \n";
-    cin >> classesPerSemester;
 
-    if (classesPerSemester > 4) {
-        cout << "!! Because of the heavy workload of CIS classes,"
-        << " we advise against taking more than 4 classes per semester." << endl;
+    cout << "SECTION 5: Customized Education Plan" <<endl;
+    cout << "------------------------------------------------------------\n";
+    int classesPerSemester;
+
+    while (true) {
+        cout << "How many classes do you want to take per semester? \n";
+        cout << "Answer: ";
+        cin >> classesPerSemester;
+
+        if (cin.fail() || (classesPerSemester == 0)) {
+            // clear the fail state
+            cin.clear();
+            // discard the invalid input
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter a valid number.\n";
+        } else {
+            // valid input, exit the loop
+            break;
+        }
     }
         
     long elapsedSeconds = time(0);
-    srand(elapsedSeconds);
+    srand(static_cast<unsigned int>(elapsedSeconds));
     int randNum;
     int currentClassNum = 0;
     int classesLeft = size;
@@ -362,20 +396,18 @@ void educationPlanGenerator(string studentName, string* classesToTake, int size)
     
     int semesterNumber = 1;
     
-    // do some formatting to put it at the center
     cout << "Customized Student Education Plan for " << studentName << ":\n";
-    // message readiness for transfer
 
     bool classOrder = false;
     
     while (classesLeft > 0){
 //   debug:      cout << randNum;
 //   debug:      cout << endl;
-        cout << "Semester " << semesterNumber << ":\n";
+        cout << "~~Semester " << semesterNumber << ":\n";
         if (classesLeft <= classesPerSemester) {
             for (int i = 0; i < size; i++) {
                 if (classesToTake[i] != "") {
-                    cout << classesToTake[i] << "\n";
+                    cout << "+" << classesToTake[i] << "\n";
                 }
             }
             break;
@@ -391,7 +423,7 @@ void educationPlanGenerator(string studentName, string* classesToTake, int size)
                     classOrder = checkClassOrder(randNum, classesToTake);
                     //classSchedule[randNum] = classesToTake[randNum];
                     if (classOrder == false) {
-                        cout << classesToTake[randNum] << endl;
+                        cout << "+" << classesToTake[randNum] << endl;
                         classesToTake[randNum] = "";
                     }
                     classesLeft--;
@@ -400,14 +432,24 @@ void educationPlanGenerator(string studentName, string* classesToTake, int size)
             }
         }
         semesterNumber++;
+        cout << "-----------\n";
     }
-    
+    cout << "************************************************************\n";
 }
-// Make main function super small
-int main(int argc, const char * argv[]) {
+    
+// main function
+int main() {
     printWelcomeMessage();
     int repeat = 0;
     do {
+        if (repeat == 1) {
+            // get the timestamp for the current date and time
+            time_t timestamp;
+            time(&timestamp);
+            
+            // display the date and time represented by the timestamp
+            cout << "Today's Date and Time:\n" << ctime(&timestamp) << endl;
+        }
         string name = getName();
         string major = findMajorTitle(getMajorChoice());
         string school;
@@ -423,11 +465,12 @@ int main(int argc, const char * argv[]) {
         
         
         programDeterminator(name, program);
-        cout << "******************************************************\n";
         cout << "Do you want to start again?\n";
         cout << "Enter 1 for YES. Anything else will exit the program" << endl;
+        cout << "Answer: ";
 
         cin >> repeat;
+        cout << "************************************************************\n";
     } while (repeat == 1);
     
     return 0;
