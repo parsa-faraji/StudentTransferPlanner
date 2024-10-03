@@ -47,3 +47,7 @@ This project is licensed under the MIT License.
 
 ## Acknowledgements
 - Special thanks to Professor. Ali Saremi at Peralta Colleges for their guidance.
+
+<img width="988" alt="Screenshot 2024-10-02 at 9 23 27 PM" src="https://github.com/user-attachments/assets/48d7b0b5-88e7-490b-9671-6e7a1673da66">
+
+
