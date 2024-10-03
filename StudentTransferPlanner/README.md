@@ -4,6 +4,10 @@
 ## Author
 [Parsa Faraji Alamouti]
 
+# 
+Video demonstration:
+https://drive.google.com/drive/folders/1CnIzimW4J762rRjrbcpp00qFlDf9Y1ho?usp=sharing
+
 
 ## Project Objective
 The **StudentTransferPlanner** is designed for transfer students from Peralta Colleges seeking to transition into undergraduate programs in Computer Science, Data Science, or Electrical Engineering and Computer Science (EECS) at UC Berkeley, UC Davis, or UC Irvine. This program aims to assist students in creating and managing their educational plans efficiently, ensuring they meet the requirements for their desired programs.
